@@ -6,42 +6,15 @@
 		<style type="text/css">
 			#a{
 				background: red;
-				width: 5vw;
-				height: 5vw;
+				width: 10vw;
+				height: 10vw;
 				position: absolute;
 			}
 			#b{
 				background: teal;
 				width: 50vw;
-				height: 5vw;
+				height: 60vw;
 				position: relative;
-			}
-			#c{
-				background: aqua;
-				width: 5vw;
-				height: 5vw;
-				position: absolute;
-			}
-			#d{
-				background: teal;
-				width: 5vw;
-				height: 50vw;
-				position: relative;
-			}
-			#Ftext{
-				width: 50vw;
-				height: 15vw;
-				border: 0.1vw solid black;
-				position: relative;
-				overflow: hidden;
-			}
-			#text{
-				background: gold;
-				font-size: 2vw;
-				position:absolute
-			}
-			#box{
-				display: flex;
 			}
 		</style>
 	</head>
@@ -49,26 +22,9 @@
 		<div id="b">
 			<div id="a"></div>
 		</div>
-		<div id="box">
-		<div id="d">
-			<div id="c"></div>
-		</div>
-		<div id="Ftext">
-			<div id="text">
-				<p>促进流通新业态新模式发展。顺应商业变革和消费升级趋势，鼓励运用大数据、云计算、移动互联网等现代信息技术，促进商旅文体等跨界融合，形成更多流通新平台、新业态、新模式。引导电商平台以数据赋能生产企业，促进个性化设计和柔性化生产，培育定制消费、智能消费、信息消费、时尚消费等商业新模式。鼓励发展“互联网+旧货”、“互联网+资源循环”，促进循环消费。实施包容审慎监管，推动流通新业态新模式健康有序发展。（发展改革委、工业和信息化部、生态环境部、商务部、文化和旅游部、市场监管总局、体育总局按职责分工负责）</p>
-				<p>推动传统流通企业创新转型升级。支持线下经营实体加快新理念、新技术、新设计改造提升，向场景化、体验式、互动性、综合型消费场所转型。鼓励经营困难的传统百货店、大型体育场馆、老旧工业厂区等改造为商业综合体、消费体验中心、健身休闲娱乐中心等多功能、综合性新型消费载体。在城市规划调整、公共基础设施配套、改扩建用地保障等方面给予支持。（工业和信息化部、自然资源部、住房城乡建设部、商务部、体育总局按职责分工负责）</p>
-				<p>改造提升商业步行街。地方政府可结合实际对商业步行街基础设施、交通设施、信息平台和诚信体系等新建改建项目予以支持，提升品质化、数字化管理服务水平。在符合公共安全的前提下，支持商业步行街等具备条件的商业街区开展户外营销，营造规范有序、丰富多彩的商业氛围。扩大全国示范步行街改造提升试点范围。（住房城乡建设部、商务部、市场监管总局按职责分工负责）</p>
-			</div>
-		</div>
-		</div>
-			<!-- 横向滚动 -->
 		<script type="text/javascript">
 			let oDiv=document.getElementById("a")
 			let oDiv2=document.getElementById("b")
-			let oDiv3=document.getElementById("c")
-			let oDiv4=document.getElementById("d")
-			let oTxt=document.getElementById("text")
-			let oFtext=document.getElementById("Ftext")
 			// 鼠标按住功能
 			oDiv.onmousedown=function (e) {
 				let distX=e.clientX-oDiv.offsetLeft
@@ -97,51 +53,10 @@
 					oDiv.style.left=newX+'px'
 					oDiv.style.top=newY+'px'
 					
-					// 横向滚动条百分比
-					let per=newX / maxLeft
-					// 带负号是反向滚动
-					oTxt.style.left=-per * oTxt.offsetWidth+'px'
-					// 解决最后出现白色背景BUG,由于父元素造成的
-					oTxt.style.left=-per * (oTxt.offsetWidth-oFtext.offsetWidth)+'px'
-					
 				}
 			}
 			
 			
-			// 纵向滚动条
-			oDiv3.onmousedown=function (e) {
-				let distX=e.clientX-oDiv3.offsetLeft
-				let distY=e.clientY-oDiv3.offsetTop
-				document.onmousemove=function (e) {
-					let newX=e.clientX-distX
-					let newY=e.clientY-distY
-					// newX是方块左边距离左侧边界距离
-					let maxLeft=oDiv4.offsetWidth-oDiv3.offsetWidth
-					let maxTop=oDiv4.offsetHeight-oDiv3.offsetHeight
-					// 限定上边界
-					if (newX<0) {
-						newX=0
-					}
-					// 限定下边界
-					if (newY<0) {
-						newY=0
-					}
-					if (newX>maxLeft) {
-						newX=maxLeft
-					}
-					if (newY>maxTop) {
-						newY=maxTop
-					}
-					// 拖拽运动
-					oDiv3.style.left=newX+'px'
-					oDiv3.style.top=newY+'px'
-					
-					let per=newY / maxTop
-					oTxt.style.top=-per * oTxt.offsetHeight+'px'
-					oTxt.style.top=-per * (oTxt.offsetHeight-oFtext.offsetHeight)+'px'
-					
-				}
-			}
 
 			// 鼠标松开功能
 			document.onmouseup=function () {
